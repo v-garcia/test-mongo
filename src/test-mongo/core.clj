@@ -12,7 +12,6 @@
 
 (def db (mg/get-db conn "local"))
 
-
 (def collection-name "test-collection")
 
 (def my-document-id   (ObjectId.))
@@ -20,6 +19,7 @@
 (defn -main
   [& _]
   (println "Start")
+  (mc/insert db collection-name {:_id my-document-id :name :test :events []})
   (loop [i 0]
     (when (zero? (mod i  1000))
       (printf "Inserted: %s items%n " i))
